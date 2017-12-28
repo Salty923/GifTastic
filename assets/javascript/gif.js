@@ -23,7 +23,17 @@ $(document).ready(function () {
     }).done(function (response) {
             // Storing an array of results in the results variable
             var results = response.data;
-            console.log(response);
+            console.log(results);
+            console.log(topic);
+
+        for (var i = 0; i < results.length; i++) {
+            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                var div = $("<div>");
+                $(".gifs").append(results[i].images.fixed_height.url);
+                
+            }
+            
+        }
 
 
     })
