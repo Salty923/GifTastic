@@ -9,12 +9,12 @@ var topics =["sports","fishing","music"];
 
 $(document).ready(function () {
 
-    $("button").on("click", function () {
+    $(".buttons").on("click", function () {
   
-    var topic = $(this).attr("data-person");
-
+    var topic = $(this).attr("data-call");
+        
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        topic + "&api_key=AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x";
+        topic + "&api_key=AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x&limit=10";
 
     // Performing our AJAX GET request
     $.ajax({
@@ -23,9 +23,11 @@ $(document).ready(function () {
     }).done(function (response) {
             // Storing an array of results in the results variable
             var results = response.data;
+            console.log(response);
 
 
-
+    })
+});
 
 
 
