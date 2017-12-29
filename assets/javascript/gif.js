@@ -28,8 +28,11 @@ $(document).ready(function () {
 
         for (var i = 0; i < results.length; i++) {
             if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-                var div = $("<div>");
-                $(".gifs").append(results[i].images.fixed_height.url);
+                var div = $("<div class='topic'>");
+                var gif = $("<img class='gif'>");
+                gif.attr("src",results[i].images.fixed_height.url);
+                div.append(gif);  
+                $(".gifs").append(div); 
                 
             }
             
