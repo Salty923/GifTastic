@@ -10,21 +10,21 @@ var topics =["sports","fishing","music"];
 $(document).ready(function () {
 
     function buttonDisplay(){
-        $(".buttons").empty();
+        $("#button-view").empty();
         for (var i = 0; i < topics.length; i++) {
             var button = $("<button>");
-            button.addClass("gifbutton");
+            button.addClass("gifbutton btn btn-primary");
             button.attr("data-name",topics[i]);
             button.text(topics[i]);
-            $(".buttons").append(button);
+            $("#button-view").append(button);
             
         }
     }
 
     $("#add-gif").on("click",function(event) {
         event.preventDefault();
-        var submitted = $("#giff-add").val();
-        topics.push(submitted); 
+        var gif = $("#gif-input").val();
+        topics.push(gif); 
         buttonDisplay();
     });
     
