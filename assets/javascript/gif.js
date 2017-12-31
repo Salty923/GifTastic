@@ -2,7 +2,8 @@
 
 
 
-var topics =["sports","fishing","music"];
+var topics =["New Years","fishing","music"];
+var show = false;
 
 
 //// Api Key: AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x
@@ -14,7 +15,7 @@ $(document).ready(function () {
         $("#button-view").empty();
         for (var i = 0; i < topics.length; i++) {
             var button = $("<button>");
-            button.addClass("gifbutton btn btn-primary");
+            button.addClass("gifbutton btn btn-lg btn-primary");
             button.attr("data-name",topics[i]);
             button.text(topics[i]);
             $("#button-view").append(button);
@@ -34,38 +35,35 @@ $(document).ready(function () {
 
     //on click delegated to div as button is dynamic
     $("#button-view").on("click",".gifbutton", function () {
-        alert("clicked");
-  
+    
     var topic = $(this).attr("data-name");
         
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        topic + "&api_key=AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x&limit=10";
+        topic + "&api_key=AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x&limit=10&rating=pg";
 
-    //Performing our AJAX GET request
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).done(function (response) {
-            //Storing an array of results in the results variable
-            var results = response.data;
-            console.log(results);
-            console.log(topic);
+        //Performing our AJAX GET request
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function (response) {
+                //Storing an array of results in the results variable
+                var results = response.data;
 
-        for (var i = 0; i < results.length; i++) {
-            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-                var div = $("<div class='topic'>");
-                var gif = $("<img class='gif'>");
-                gif.attr("src",results[i].images.fixed_height.url);
-                div.append(gif);  
-                $("#gif-view").append(div); 
-                
+            for (var i = 0; i < results.length; i++) {
+                if (show === false) {
+                    var div = $("<div class='topic'>");
+                    var gif = $("<img class='gif'>");
+                    gif.attr("src", results[i].images.fixed_height.url);
+                    div.append(gif);
+                    $("#gif-view").append(div);  
+                }else{
+                    $("#gif-view").remove(); 
+                }
+                 
             }
-            
-        }
 
-
+        })
     })
-})
     buttonDisplay();
 
 
