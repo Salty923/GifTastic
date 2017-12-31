@@ -9,6 +9,7 @@ var topics =["sports","fishing","music"];
 
 $(document).ready(function () {
 
+    //create button for html by looping through array
     function buttonDisplay(){
         $("#button-view").empty();
         for (var i = 0; i < topics.length; i++) {
@@ -21,6 +22,7 @@ $(document).ready(function () {
         }
     }
 
+    //input box add gif button
     $("#add-gif").on("click",function(event) {
         event.preventDefault();
         var gif = $("#gif-input").val();
@@ -30,50 +32,41 @@ $(document).ready(function () {
     
 
 
-    // $(".buttons").on("click", function () {
+    //on click delegated to div as button is dynamic
+    $("#button-view").on("click",".gifbutton", function () {
+        alert("clicked");
   
-    // var topic = $(this).attr("data-call");
+    var topic = $(this).attr("data-name");
         
-    // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    //     topic + "&api_key=AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        topic + "&api_key=AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x&limit=10";
 
-    // Performing our AJAX GET request
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    // }).done(function (response) {
-            // Storing an array of results in the results variable
-    //         var results = response.data;
-    //         console.log(results);
-    //         console.log(topic);
+    //Performing our AJAX GET request
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function (response) {
+            //Storing an array of results in the results variable
+            var results = response.data;
+            console.log(results);
+            console.log(topic);
 
-    //     for (var i = 0; i < results.length; i++) {
-    //         if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-    //             var div = $("<div class='topic'>");
-    //             var gif = $("<img class='gif'>");
-    //             gif.attr("src",results[i].images.fixed_height.url);
-    //             div.append(gif);  
-    //             $(".gifs").append(div); 
+        for (var i = 0; i < results.length; i++) {
+            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                var div = $("<div class='topic'>");
+                var gif = $("<img class='gif'>");
+                gif.attr("src",results[i].images.fixed_height.url);
+                div.append(gif);  
+                $("#gif-view").append(div); 
                 
-    //         }
+            }
             
-    //     }
+        }
 
 
-    // })
+    })
+})
     buttonDisplay();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //document ready closing
