@@ -1,9 +1,6 @@
 // alert("connected");
 
-
-
 var topics =["New Years","fishing","music"];
-var show = false;
 
 
 //// Api Key: AmOqTbPtuhUYCwI707dfOP5Lby5BLU0x
@@ -34,6 +31,7 @@ $(document).ready(function () {
         var gif = $("#gif-input").val();
         topics.push(gif); 
         buttonDisplay();
+        document.getElementById("gif-form").reset();
     });
     
 
@@ -57,16 +55,11 @@ $(document).ready(function () {
                     var results = response.data;
 
                 for (var i = 0; i < results.length; i++) {
-                    if (show === false) {
                         var div = $("<div class='topic'>");
                         var gif = $("<img class='gif'>");
                         gif.attr("src", results[i].images.fixed_height.url);
                         div.append(gif);
                         $("#gif-view").append(div);  
-                    }else{
-                        $("#gif-view").remove(); 
-                    }
-                    
                 }
 
             })
