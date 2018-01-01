@@ -31,6 +31,7 @@ $(document).ready(function () {
         var gif = $("#gif-input").val();
         topics.push(gif); 
         buttonDisplay();
+        //clear input and show pladeholder
         document.getElementById("gif-form").reset();
     });
     
@@ -53,12 +54,19 @@ $(document).ready(function () {
             }).done(function (response) {
                     //Storing an array of results in the results variable
                     var results = response.data;
+                    console.log(results);
 
                 for (var i = 0; i < results.length; i++) {
                         var div = $("<div class='topic'>");
-                        var gif = $("<img class='gif'>");
-                        gif.attr("src", results[i].images.fixed_height.url);
-                        div.append(gif);
+                        var gifs = $("<img class='gifs'>");
+                        var gifa = $("<img class='gifa'>");
+                        //still state image
+                        gifs.attr("src", results[i].images.fixed_height_still.url);
+                        //animate state image
+                        gifa.attr("src", results[i].images.fixed_height.url);
+                        //add gif still to new div
+                        div.append(gifs);
+                        //add new div to html
                         $("#gif-view").append(div);  
                 }
 
