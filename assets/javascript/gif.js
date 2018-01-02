@@ -62,14 +62,28 @@ $(document).ready(function () {
                         var gifa = $("<img class='gifa'>");
                         //still state image
                         gifs.attr("src", results[i].images.fixed_height_still.url);
+                        gifs.attr("data-state","still");
+                        gifs.attr("data-still", results[i].images.fixed_height_still.url);
+                        gifs.attr("data-animate", results[i].images.fixed_height.url);
                         //animate state image
                         gifa.attr("src", results[i].images.fixed_height.url);
+                        gifa.attr("data-state", "animate");
                         //add gif still to new div
                         div.append(gifs);
                         //add new div to html
                         $("#gif-view").append(div);  
                 }
-
+                $("img").on("click",function () {
+                    var state = $(this).attr("data-state");
+                    alert(state);
+                    if (state === "still") {
+                        $(this).attr("src",$(this).attr("data-animate"));
+                        $(this).attr("data-state","animate");
+                    }else{
+                        $(this).attr("src",$(this).attr("data-still"));
+                        $(this).attr("data-state","still");
+                    }
+                })
             })
      })
         buttonDisplay();
