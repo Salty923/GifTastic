@@ -24,7 +24,7 @@ form{
 }
 
 .topic{
-    margin: 10px auto;
+    margin: 50px auto;
 }
 
 .gif{
@@ -33,5 +33,9 @@ form{
 }
 
 #button-view{
+    margin: 0px auto;
+}
+
+.rating{
     margin: 0px auto;
 }
