@@ -21,6 +21,12 @@ form{
     margin: 20px 20px;
 }
 
+#add-gif{
+    background-color:none;
+    border: none;
+    font-size: 20px;
+}
+
 .gifbutton{
     margin: 10px;
 }

@@ -29,10 +29,14 @@ $(document).ready(function () {
     $("#add-gif").on("click",function(event) {
         event.preventDefault();
         var gif = $("#gif-input").val();
-        topics.push(gif); 
-        buttonDisplay();
-        //clear input and show pladeholder
-        document.getElementById("gif-form").reset();
+            if( gif ==""){
+            alert('Name must be filled out');
+            }else{
+            topics.push(gif); 
+            buttonDisplay();
+            //clear input and show pladeholder
+            document.getElementById("gif-form").reset();
+            }
     });
     
 
